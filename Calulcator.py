@@ -1,8 +1,9 @@
+# Creating caluclator class
 class Calculator():
     def __init__(self, tokens):
         self._tokens = tokens
         self._current = tokens[0]
-    
+# Addition and subtraction    
     def exp(self):
         result = self.term()
         while self._current is '+':
@@ -12,7 +13,7 @@ class Calculator():
             self.next()
             result -= self.term
         return result
-
+# paranthesis evaluation
     def factor(self):
         result = None
         if self._current.isdigit():
@@ -27,7 +28,7 @@ class Calculator():
     def next(self): 
         self._tokens = self._tokens[1:]
         self._current = self._tokens[0] if len(self._tokens) > 0 else None
-
+# multiplication and division
     def term(self):
         result = self.factor()
         while self._current is '*':

@@ -21,7 +21,7 @@ class Calci():
             self.next()
         elif self._current is '(':
             self.next()
-            eq_result = self.exp()
+            eq_result = self.expression()
             self.next()
         return eq_result
 
@@ -44,9 +44,13 @@ if __name__ == '__main__':
         print("please enter your calculation expression")
         my_list = list(input('> '))
         tokens = []
+        real_tokens = []
         for i in range(len(my_list)):
             if my_list[i].isdigit() and len(tokens) > 0 and tokens[-1].isdigit():
                 tokens[-1] += my_list[i]
             else:
                 tokens.append(my_list[i])
-        print (Calci(tokens).expression() )
+        for ext_space in tokens:
+            if ext_space != " ":
+                real_tokens.append(ext_space)
+        print (Calci(real_tokens).expression() )
